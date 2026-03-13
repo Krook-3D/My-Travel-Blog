@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Travel Journal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a class="nav-logo" id="navLogo" onclick="showHome()">
+      <span class="pin">✦</span> My Travel Journal
+    </a>
+    <button class="nav-back" id="navBack" onclick="showHome()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      All Destinations
+    </button>
+  </nav>
+
+  <!-- ── HOME PAGE ── -->
+  <div id="home-page">
+
+    <div class="hero">
+      <span class="hero-eyebrow">✦ Personal Travel Journal ✦</span>
+      <h1>Where have you<br><em>been?</em></h1>
+      <p class="hero-sub">Collect your travels. Every place tells a story — add a photo, a memory, a feeling.</p>
+      <span class="hero-count" id="heroCount"><strong>0</strong> destinations collected</span>
+    </div>
+
+    <div class="grid-section">
+      <div class="grid-label">Your destinations</div>
+      <div class="destinations-grid" id="destinationsGrid">
+        <div class="empty-state" id="emptyState">
+          <span class="empty-icon">🗺️</span>
+          <div>
+            <strong>No destinations yet</strong>
+            <p>Tap the <strong>+</strong> button to add your first travel destination.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── DESTINATION PAGE ── -->
+  <div id="dest-page">
+    <div class="dest-hero" id="destHero"></div>
+    <div class="dest-content">
+
+      <div class="dest-content-label">Journey Notes</div>
+      <div class="dest-description" id="destDescription"></div>
+
+      <!-- PHOTO GALLERY -->
+      <div class="gallery-section">
+        <div class="gallery-header">
+          <div class="gallery-title">Photo Gallery</div>
+          <label class="gallery-add-btn">
+            <input type="file" id="galleryInput" accept="image/*" multiple>
+            + Add Photos
+          </label>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <div class="gallery-empty" id="galleryEmpty">
+            <span>🖼️</span>
+            <p>No photos yet — add some memories!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-actions">
+        <button class="dest-edit-btn" id="destEditBtn">✎ Edit Destination</button>
+        <button class="dest-del-btn" id="destDelBtn">✕ Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-prev" id="lightboxPrev" onclick="lightboxNav(event,-1)">&#8592;</button>
+    <button class="lightbox-next" id="lightboxNext" onclick="lightboxNav(event,1)">&#8594;</button>
+    <img class="lightbox-img" id="lightboxImg" alt="">
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+  <!-- ── ADD / EDIT MODAL ── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">New <span>Destination</span></div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Cover Photo</label>
+          <div class="img-upload-zone" id="uploadZone">
+            <input type="file" id="imgInput" accept="image/*">
+            <img class="upload-preview" id="uploadPreview" alt="">
+            <div class="upload-placeholder" id="uploadPlaceholder">
+              <span class="upload-icon">📷</span>
+              <div class="upload-text">Upload a photo</div>
+              <div class="upload-hint">Click or drag &amp; drop · JPG, PNG, WEBP</div>
+            </div>
+          </div>
+          <div class="upload-change" id="uploadChange" onclick="document.getElementById('imgInput').click()">↺ Change Photo</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>City / Place <span>*</span></label>
+            <input type="text" id="inputCity" placeholder="e.g. Kyoto">
+          </div>
+          <div class="form-group">
+            <label>Country <span>*</span></label>
+            <input type="text" id="inputCountry" placeholder="e.g. Japan">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Visit Date</label>
+          <input type="date" id="inputDate">
+        </div>
+
+        <div class="form-group">
+          <label>Your Story <span>*</span></label>
+          <textarea id="inputDesc" placeholder="What did you see, feel, taste? Write about your experience..."></textarea>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="saveDestination()">✦ Add Destination</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ADD BUTTON ── -->
+  <button class="add-btn" id="addBtn" onclick="openModal()" title="Add destination">+</button>
+
+  <script src="app.js"></script>
+</body>
+</html>
