@@ -43,14 +43,6 @@ git clone https://github.com/Krook-3D/My-Travel-Blog.git
 open My-Travel-Blog/index.html
 ```
 
-No build step, no `npm install`, no dependencies.
-
-### Deploy to GitHub Pages
-
-1. Push the repo to GitHub
-2. Go to **Settings → Pages**
-3. Set source to `main` branch, `/ (root)` folder
-4. Click **Save** — your journal will be live at `https://krook-3d.github.io/My-Travel-Blog`
 
 ---
 
